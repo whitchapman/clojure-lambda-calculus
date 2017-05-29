@@ -1,6 +1,6 @@
 # lambda-calculus
 
-This is a clojure version Steven Syrek's very cool lambda calculus presentation written in JavaScript:
+This is a clojure version of Steven Syrek's very cool lambda calculus presentation written in JavaScript:
 https://github.com/sjsyrek/presentations/blob/master/lambda-calculus/lambda.js
 
 ## License
