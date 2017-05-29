@@ -31,12 +31,12 @@
                 FALSE))
 
 (defn SUCC_PAIR [p] (PAIR (SECOND p) (SUCC (SECOND p))))
-(defn PRED2 [n] (FIRST (n SUCC_PAIR (PAIR ZERO ZERO))))
+(defn PRED [n] (FIRST (n SUCC_PAIR (PAIR ZERO ZERO))))
 
 (def FOUR (SUCC THREE))
 
 (defn PLUS [n m] (m SUCC n))
-(defn MINUS [n m] (m PRED2 n))
+(defn MINUS [n m] (m PRED n))
 (defn MULT [n m] (m (partial PLUS n) ZERO))
 (defn EXP [n m]
   (fn [f x] (m (partial n f) (n f x)))
@@ -44,7 +44,10 @@
   )
 
 (def FIVE (PLUS TWO THREE) )
-
+(def SIX (SUCC FIVE))
+(def SEVEN (PLUS TWO FIVE))
+(def EIGHT (SUCC SEVEN))
+(def NINE (PLUS FOUR FIVE))
 
 (defn to-bool [b] (IF_THEN_ELSE b true false))
 (defn from-bool [b] (if b TRUE FALSE))
