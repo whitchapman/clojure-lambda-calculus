@@ -1,10 +1,7 @@
 # lambda-calculus
 
-A Clojure library designed to ... well, that part is up to you.
-
-## Usage
-
-FIXME
+This is a clojure version Steven Syrek's very cool lambda calculus presentation written in JavaScript:
+https://github.com/sjsyrek/presentations/blob/master/lambda-calculus/lambda.js
 
 ## License
 
