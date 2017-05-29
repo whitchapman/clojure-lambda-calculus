@@ -2,7 +2,10 @@
   (:require [clojure.test :refer :all]
             [lambda-calculus.core :refer :all]))
 
-(deftest logic-tests
+(deftest logic-test
+  (is (= (TRUE "first" "second") "first"))
+  (is (= (FALSE "first" "second") "second"))
+
   (is (= (AND TRUE TRUE) TRUE))
   (is (= (AND TRUE FALSE) FALSE))
   (is (= (AND FALSE TRUE) FALSE))
@@ -26,6 +29,11 @@
   (is (= (to-int (SUCC ONE)) (to-int TWO)))
   (is (= (to-int (SUCC TWO)) (to-int THREE)))
   (is (= (to-int (SUCC THREE)) (to-int FOUR)))
+
+  (is (= (to-int (PREDv1 ONE)) (to-int ZERO)))
+  (is (= (to-int (PREDv1 TWO)) (to-int ONE)))
+  (is (= (to-int (PREDv1 THREE)) (to-int TWO)))
+  (is (= (to-int (PREDv1 FOUR)) (to-int THREE)))
 
   (is (= (to-int (PRED ONE)) (to-int ZERO)))
   (is (= (to-int (PRED TWO)) (to-int ONE)))

@@ -14,21 +14,21 @@
 (defn NOT [x] (x FALSE TRUE))
 (defn XOR [x y] (x (NOT y) y))
 
-(defn IF_THEN_ELSE [p x y] (p x y)) ;;ID
+(defn IF_THEN_ELSE [p x y] (p x y)) ;;reduces to ID
 
 (defn ZERO [f x] x)
 (defn ONE [f x] (f x))
 (defn TWO [f x] (f (f x)))
 (defn THREE [f x] (f (f (f x))))
 
+(defn SUCC [n] (fn [f x] (f (n f x))))
+(defn PREDv1 [n] ((n (fn [p] (fn [z] (z (SUCC (p TRUE)) (p TRUE))))
+                     (fn [z] (z ZERO ZERO)))
+                  FALSE))
+
 (defn PAIR [x y] (fn [p] (p x y)))
 (defn FIRST [p] (p (fn [x y] x)))  ;;(p TRUE)
 (defn SECOND [p] (p (fn [x y] y))) ;;(p FALSE)
-
-(defn SUCC [n] (fn [f x] (f (n f x))))
-#_(defn PRED [n] ((n (fn [p z] (z (SUCC (p TRUE)) (p TRUE))))
-                (fn [z] (z ZERO ZERO))
-                FALSE))
 
 (defn SUCC_PAIR [p] (PAIR (SECOND p) (SUCC (SECOND p))))
 (defn PRED [n] (FIRST (n SUCC_PAIR (PAIR ZERO ZERO))))
@@ -40,7 +40,7 @@
 (defn MULT [n m] (m (partial PLUS n) ZERO))
 (defn EXP [n m] (m (partial MULT n) ONE))
 
-(def FIVE (PLUS TWO THREE) )
+(def FIVE (PLUS TWO THREE))
 (def SIX (SUCC FIVE))
 (def SEVEN (PLUS TWO FIVE))
 (def EIGHT (SUCC SEVEN))
