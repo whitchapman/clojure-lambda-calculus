@@ -38,10 +38,7 @@
 (defn PLUS [n m] (m SUCC n))
 (defn MINUS [n m] (m PRED n))
 (defn MULT [n m] (m (partial PLUS n) ZERO))
-(defn EXP [n m]
-  (fn [f x] (m (partial n f) (n f x)))
-  ;;(fn [f x] (m (partial n f) (n f x)))
-  )
+(defn EXP [n m] (m (partial MULT n) ONE))
 
 (def FIVE (PLUS TWO THREE) )
 (def SIX (SUCC FIVE))
