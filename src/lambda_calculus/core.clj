@@ -45,6 +45,25 @@
 (def SEVEN (PLUS TWO FIVE))
 (def EIGHT (SUCC SEVEN))
 (def NINE (PLUS FOUR FIVE))
+(def TEN (MULT TWO FIVE))
+
+(defn IS_ZERO [n] (n (fn [m] FALSE) TRUE))
+(defn LESS_THAN_OR_EQUAL [n m] (IS_ZERO (MINUS n m)))
+(defn LESS_THAN [n m] (AND (LESS_THAN_OR_EQUAL n m)
+                           (NOT (IS_ZERO (n PRED m)))))
+(defn EQUALS [n m] (AND (LESS_THAN_OR_EQUAL n m)
+                        (LESS_THAN_OR_EQUAL m n)))
+(defn GREATER_THAN_OR_EQUAL [n m] (IS_ZERO (n PRED m)))
+(defn GREATER_THAN [n m] (AND (GREATER_THAN_OR_EQUAL n m)
+                              (NOT (IS_ZERO (MINUS n m)))))
+
+(defn COMPOSE [f g x] (f (g x)))
+(def NOT_ZERO (partial COMPOSE NOT IS_ZERO))
+
+#_(defn FIX [f]
+  (fn [x] (f (fn [y] (x x y))))
+  (fn [x] (f (fn [y] (x x y)))))
+
 
 (defn to-bool [b] (IF_THEN_ELSE b true false))
 (defn from-bool [b] (if b TRUE FALSE))

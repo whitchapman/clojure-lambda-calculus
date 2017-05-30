@@ -63,3 +63,28 @@
   (is (= (to-int (EXP TWO THREE)) (to-int EIGHT)))
   (is (= (to-int (EXP THREE TWO)) (to-int NINE)))
   (is (= (to-int (EXP THREE THREE)) (to-int (MULT NINE THREE)))))
+
+(deftest comparator-tests
+  (is (= (to-bool (IS_ZERO ZERO)) true))
+  (is (= (to-bool (IS_ZERO ONE)) false))
+  (is (= (to-bool (IS_ZERO TEN)) false))
+
+  (is (= (to-bool (LESS_THAN_OR_EQUAL ONE ZERO)) false))
+  (is (= (to-bool (LESS_THAN_OR_EQUAL ONE ONE)) true))
+  (is (= (to-bool (LESS_THAN_OR_EQUAL ONE TWO)) true))
+
+  (is (= (to-bool (LESS_THAN ONE ZERO)) false))
+  (is (= (to-bool (LESS_THAN ONE ONE)) false))
+  (is (= (to-bool (LESS_THAN ONE TWO)) true))
+
+  (is (= (to-bool (GREATER_THAN_OR_EQUAL ONE ZERO)) true))
+  (is (= (to-bool (GREATER_THAN_OR_EQUAL ONE ONE)) true))
+  (is (= (to-bool (GREATER_THAN_OR_EQUAL ONE TWO)) false))
+
+  (is (= (to-bool (GREATER_THAN ONE ZERO)) true))
+  (is (= (to-bool (GREATER_THAN ONE ONE)) false))
+  (is (= (to-bool (GREATER_THAN ONE TWO)) false))
+
+  (is (= (to-bool (NOT_ZERO ZERO)) false))
+  (is (= (to-bool (NOT_ZERO ONE)) true))
+  (is (= (to-bool (NOT_ZERO TEN)) true)))
